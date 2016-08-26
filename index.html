@@ -2,14 +2,86 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Pizza Maker</title>
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
   <link rel="stylesheet" href="css/bootstrap-theme.min.css" type="text/css">
   <link rel="stylesheet" href="css/mystyle.css" type="text/css">
   <script src="js/jquery-3.1.0.js"></script>
   <script src="js/scripts.js"></script>
+  <link rel="shortcut icon" href="img/pizza.ico" >
   </head>
   <body>
+    <div class="container">
+      <button id="order-pizza" type="button">Start your order</button>
+      <div class="rows">
+        <div class="col-xs-6">
+          <form class="pizza-form">
+            <div class="form-group">
+              <label for="">Please choose a size</label>
+              <select class="form-control" id="user-size">
+                <option value="Tiny">Tiny - 6 inch - $7</option>
+                <option value="Medium">Medium - 12 inch - $10</option>
+                <option value="Classic">Classic - 16 inch - $14</option>
+                <option value="Oh Boy">Oh Boy - 32 inch $32</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="">Please choose a crust</label>
+              <select class="form-control" id="user-crust">
+                <option value="Thin">Thin</option>
+                <option value="Original">Original</option>
+                <option value="Thin Wheat">Thin Wheat</option>
+                <option value="Original Wheat">Original Wheat</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="">Please choose a cheese</label>
+              <select class="form-control" id="user-cheese">
+                <option value="Mozzarella">Mozzarella</option>
+                <option value="Cheddar">Cheddar</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="">Please choose a sauce</label>
+              <select class="form-control" id="user-sauce">
+                <option value="Marinara">Marinara</option>
+                <option value="Pesto">Pesto</option>
+                <option value="WhiteGarlic">White Garlic</option>
+                <option value="BBQ">BBQ</option>
+              </select>
+            </div>
+            <div id="pizza-toppings">
 
+            </div>
+            <button id='new-topping' type='button'>Add a Topping</button>
+            <button type="submit" name="button">Submit your Pizza</button>
+          </form>
+        </div>
+        <div class="col-xs-6">
+          <div class="rows">
+            <div id='item-tally' class="col-xs-6">
+              <div id='item-tally-size'>
+
+              </div>
+              <div id='item-tally-crust'>
+
+              </div>
+              <div id='item-tally-cheese'>
+
+              </div>
+              <div id='item-tally-sauce'>
+
+              </div>
+              <div id='item-tally-toppings'>
+
+              </div>
+            </div>
+            <div id='item-tally-cost' class="col-xs-6">
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
