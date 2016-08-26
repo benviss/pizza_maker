@@ -1,0 +1,11 @@
+.price {
+  float: right;
+}
+
+#show-pizza {
+  display: none;
+}
+
+#pizza-list {
+  bottom: auto;
+}

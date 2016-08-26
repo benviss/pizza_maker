@@ -18,11 +18,15 @@ var tiny = {name: "Tiny - 6 inch" , price: 7}
 var medium = {name: "Medium - 12 inch" , price: 10}
 var classic = {name: "Classic - 16 inch" , price: 14}
 var ohBoy = {name: "Oh Boy - 32 inch" , price: 32}
+var pizzaSizesArray = [tiny, medium, classic, ohBoy];
+var pizzaSizesArray2 = ['Tiny', 'Medium', 'Classic', 'Oh Boy'];
   // Pizza Crust
 var thin = {name: 'Thin Crust'}
 var original = {name: 'Original Crust'}
 var thinWheat = {name: 'Thin Wheat Crust'}
 var originalWheat = {name: 'Original Wheat Crust'}
+var pizzaCrustArray = [thin,original,thinWheat,originalWheat];
+var pizzaCrustArray2 = ['Thin','Original','ThinWheat','OriginalWheat'];
   // Pizza Toppings
 var pepperoni = {name: 'Pepperoni' , price: 1.25}
 var sausage = {name: 'Sausage' , price: 1.50}
@@ -30,22 +34,26 @@ var pineapple = {name: 'Pineapple' , price: .75}
 var mushrooms = {name: 'Mushrooms' , price: .75}
 var onion = {name: 'Onion', price: .5}
 var bacon = {name: 'Bacon', price: 1.5}
+var pizzaToppingsArray = [pepperoni,sausage,pineapple,mushrooms,onion,bacon];
+var pizzaToppingsArray2 = ['Pepperoni','Sausage','Pineapple','Mushrooms','Onion','Bacon'];
+var userToppings = [];
   // Pizza Cheese
 var mozzarella = {name: 'Mozzarella' , price: .75}
 var cheddar = {name: 'Cheddar' , price: .75}
+var pizzaCheeseArray = [mozzarella,cheddar];
+var pizzaCheeseArray2 = ['Mozzarella','Cheddar'];
   // Pizza Sauce
 var marinara = {name: 'Marinara' , price: .50}
 var pesto = {name: 'Pesto' , price: .50}
 var whiteGarlic = {name: 'White Garlic' , price: .75}
 var bbq = {name: 'BBQ' , price: .75}
+var pizzaSauceArray = [marinara,pesto,whiteGarlic,bbq];
+var pizzaSauceArray2 = ['Marinara','Pesto','WhiteGarlic','BBQ'];
 
 var userPizza = new Pizza('thin')
 
 Pizza.prototype.findPCost = function() {
   this.total += this.size.price;
-
-
-
   for (var i = 0; i < this.toppings.length; i++) {
     this.total += this.toppings[i].price
   }
@@ -56,44 +64,18 @@ $(document).ready(function() {
   // $('#order-pizza').click(function(){
   var order = new Order();
   var pizzaToppings = 0;
-  $('#user-size').change(function() {
-    $('#item-tally-size p').detach();
-    $('#item-tally-size').append('<p>Pizza Size - '+ document.getElementById("user-size").value + '</p>')
-  });
-  $('#user-crust').change(function() {
-    $('#item-tally-crust p').detach();
-    $('#item-tally-crust').append('<p>Pizza Crust - '+ document.getElementById("user-crust").value + '</p>')
-  });
-  $('#user-cheese').change(function() {
-    $('#item-tally-cheese p').detach();
-    $('#item-tally-cheese').append('<p>Pizza Cheese - '+ document.getElementById("user-cheese").value + '</p>')
-  });
-  $('#user-sauce').change(function() {
-    $('#item-tally-sauce p').detach();
-    $('#item-tally-sauce').append('<p>Pizza Sauce - '+ document.getElementById("user-sauce").value + '</p>')
-  });
-  $('.new-topping').change(function() {
-    $('#item-tally-toppings p').detach();
-    $('#item-tally-toppings').append('<p>Pizza Toppings <ul>');
-    for (var i = 0; i <= pizzaToppings; i++) {
-      var toppingindex = 'pizza-topping' + i;
-      $('#item-tally-toppings').append('<li>'+ document.getElementById(toppingindex).value + '</li>');
-    }
-    $('#item-tally-toppings').append('</ul></p>');
 
-  });
     $('#new-topping').click(function(){
       pizzaToppings += 1;
-      console.log(pizzaToppings)
       $("#pizza-toppings").append('<div class="form-group">' +
       '<label for="new-topping">Select a topping</label>' +
       '<select class="new-topping form-control" id="pizza-topping'+pizzaToppings+'"">' +
-      '<option value="pepperoni">Pepperoni</option>' +
-      '<option value="sausage">Sausage</option>' +
-      '<option value="pineapple">Pineapple</option>' +
-      '<option value="mushrooms">Mushrooms</option>' +
-      '<option value="onion">Onion</option>' +
-      '<option value="bacon">Bacon</option>' +
+      '<option value="Pepperoni">Pepperoni - $1.25</option>' +
+      '<option value="Sausage">Sausage - $1.50</option>' +
+      '<option value="Pineapple">Pineapple - $0.75</option>' +
+      '<option value="Mushrooms">Mushrooms - $0.75</option>' +
+      '<option value="Onion">Onion - $0.50</option>' +
+      '<option value="Bacon">Bacon - $1.50</option>' +
       '</select>' +
       '</div>' +
       '</div>');
@@ -101,11 +83,38 @@ $(document).ready(function() {
     $('form').submit(function(event){
       event.preventDefault();
       var userSize = $('#user-size').val();
+        userSize = pizzaSizesArray2.findIndex(function(x) { return x == userSize; });
       var userCrust = $('#user-crust').val();
+        userCrust = pizzaCrustArray2.findIndex(function(x) { return x == userCrust; });
       var userCheese = $('#user-cheese').val();
+        userCheese = pizzaCheeseArray2.findIndex(function(x) { return x == userCheese; });
       var userSauce = $('#user-sauce').val();
-      order.pizzas.push(new Pizza(userSize,userCrust,userCheese,userSauce));
-    });
+        userSauce = pizzaSauceArray2.findIndex(function(x) { return x == userSauce; });
+      var userPizza = new Pizza(pizzaSizesArray[userSize],pizzaCrustArray[userCrust],pizzaCheeseArray[userCheese],pizzaSauceArray[userSauce]);
+      order.pizzas.push(userPizza)
 
+      for (var i = 1; i <= pizzaToppings; i++) {
+        var toppingindex = '#pizza-topping' + i
+        var userTopping = $(toppingindex).val();
+        userToppings.push(userTopping);
+        var topindex = pizzaToppingsArray2.findIndex(function(x) { return x == userTopping; })
+        userPizza.toppings.push(pizzaToppingsArray[topindex]);
+
+      }
+      userPizza.findPCost();
+
+    $("ul#pizza-list").append("<li><span class='pizza'>" + userPizza.size.name +" Pizza Cost $" + userPizza.total+"</span></li>")
+      $(".pizza").last().click(function(){
+        $("#show-pizza").toggle();
+        $("#pickSize").text(" "+userPizza.size.name);
+        $("#pickCrust").text(" "+userPizza.crust.name);
+        $("#pickCheese").text(" "+userPizza.cheese.name);
+        $("#pickSauce").text(" "+userPizza.sauce.name);
+        $(".pizza").text(userPizza.size.name +" Pizza Cost $" + userPizza.total);
+        // userToppings.forEach(function(topping){
+        //   $('#topping-list').append('<li>' + topping + '</li>')
+        // });
+      });
+    });
   // });
 });

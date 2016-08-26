@@ -19,7 +19,7 @@
             <div class="form-group">
               <label for="">Please choose a size</label>
               <select class="form-control" id="user-size">
-                <option value="Tiny">Tiny - 6 inch - $7</option>
+                <option name="tiny" value="Tiny">Tiny - 6 inch - $7</option>
                 <option value="Medium">Medium - 12 inch - $10</option>
                 <option value="Classic">Classic - 16 inch - $14</option>
                 <option value="Oh Boy">Oh Boy - 32 inch $32</option>
@@ -53,35 +53,25 @@
             <div id="pizza-toppings">
 
             </div>
-            <button id='new-topping' type='button'>Add a Topping</button>
-            <button type="submit" name="button">Submit your Pizza</button>
+            <button class='form-inline' id='new-topping' type='button'>Add a Topping</button>
+            <button class='form-inline' type="submit" name="button">Submit your Pizza</button>
+            <p class='price'><span id="pizza-cost"></span></p>
           </form>
         </div>
         <div class="col-xs-6">
-          <div class="rows">
-            <div id='item-tally' class="col-xs-6">
-              <div id='item-tally-size'>
+          <div id='show-pizza'>
+            <p>Size:<span id='pickSize'></span></p>
+            <p>Crust:<span id='pickCrust'></span></p>
+            <p>Cheese:<span id='pickCheese'></span></p>
+            <p>Sauce:<span id='pickSauce'></span></p>
+            <ul id='topping-list'>
 
-              </div>
-              <div id='item-tally-crust'>
-
-              </div>
-              <div id='item-tally-cheese'>
-
-              </div>
-              <div id='item-tally-sauce'>
-
-              </div>
-              <div id='item-tally-toppings'>
-
-              </div>
-            </div>
-            <div id='item-tally-cost' class="col-xs-6">
-
-            </div>
+            </ul>
           </div>
         </div>
-      </div>
+        </div>
     </div>
+    <ul id='pizza-list'>
+    </ul>
   </body>
 </html>
