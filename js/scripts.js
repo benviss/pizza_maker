@@ -36,7 +36,6 @@ var onion = {name: 'Onion', price: .5}
 var bacon = {name: 'Bacon', price: 1.5}
 var pizzaToppingsArray = [pepperoni,sausage,pineapple,mushrooms,onion,bacon];
 var pizzaToppingsArray2 = ['Pepperoni','Sausage','Pineapple','Mushrooms','Onion','Bacon'];
-var userToppings = [];
   // Pizza Cheese
 var mozzarella = {name: 'Mozzarella' , price: .75}
 var cheddar = {name: 'Cheddar' , price: .75}
@@ -61,7 +60,6 @@ Pizza.prototype.findPCost = function() {
 
 // Front End
 $(document).ready(function() {
-  // $('#order-pizza').click(function(){
   var order = new Order();
   var pizzaToppings = 0;
 
@@ -92,7 +90,7 @@ $(document).ready(function() {
         userSauce = pizzaSauceArray2.findIndex(function(x) { return x == userSauce; });
       var userPizza = new Pizza(pizzaSizesArray[userSize],pizzaCrustArray[userCrust],pizzaCheeseArray[userCheese],pizzaSauceArray[userSauce]);
       order.pizzas.push(userPizza)
-
+      var userToppings = [];
       for (var i = 1; i <= pizzaToppings; i++) {
         var toppingindex = '#pizza-topping' + i
         var userTopping = $(toppingindex).val();
@@ -105,16 +103,19 @@ $(document).ready(function() {
 
     $("ul#pizza-list").append("<li><span class='pizza'>" + userPizza.size.name +" Pizza Cost $" + userPizza.total+"</span></li>")
       $(".pizza").last().click(function(){
+        $('#topping-list').empty();
         $("#show-pizza").toggle();
         $("#pickSize").text(" "+userPizza.size.name);
         $("#pickCrust").text(" "+userPizza.crust.name);
         $("#pickCheese").text(" "+userPizza.cheese.name);
         $("#pickSauce").text(" "+userPizza.sauce.name);
-        $(".pizza").text(userPizza.size.name +" Pizza Cost $" + userPizza.total);
-        // userToppings.forEach(function(topping){
-        //   $('#topping-list').append('<li>' + topping + '</li>')
-        // });
+        userToppings.forEach(function(topping){
+          $('#topping-list').append('<li>' + topping + '</li>')
+        });
       });
+      $('#complete-order').show();
     });
-  // });
+    $('#complete-order').click(function() {
+      
+    });
 });
