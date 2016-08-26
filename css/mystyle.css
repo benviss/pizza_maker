@@ -22,6 +22,19 @@
 .pizza:hover{
     text-decoration: underline;
 }
+
 #show-receipt {
   display: none
+}
+
+body {
+  background-image: url('../img/pizzaback.jpg');
+}
+
+.container {
+  background-color:rgba(192,192,192,0.9);
+}
+
+.header {
+  text-align: center;
 }

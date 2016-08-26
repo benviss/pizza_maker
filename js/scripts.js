@@ -68,7 +68,6 @@ Order.prototype.findOrderCost = function() {
 $(document).ready(function() {
   var order = new Order();
   var pizzaToppings = 0;
-
     $('#new-topping').click(function(){
       pizzaToppings += 1;
       $("#pizza-toppings").append('<div class="form-group">' +
@@ -103,10 +102,8 @@ $(document).ready(function() {
         userToppings.push(userTopping);
         var topindex = pizzaToppingsArray2.findIndex(function(x) { return x == userTopping; })
         userPizza.toppings.push(pizzaToppingsArray[topindex]);
-
       }
       userPizza.findPCost();
-
     $("ul.pizza-list").append("<li><span class='pizza'>" + userPizza.size.name +" Pizza Cost $" + userPizza.total+"</span></li>")
       $(".pizza").last().click(function(){
         $('#show-receipt').hide();
@@ -123,6 +120,7 @@ $(document).ready(function() {
       $('#complete-order').show();
     });
     $('#complete-order').click(function() {
+      order.total = 0;
       $('#show-pizza').hide();
       $('#show-receipt').show();
       order.findOrderCost();
