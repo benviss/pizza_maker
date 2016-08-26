@@ -10,7 +10,7 @@
   bottom: auto;
 }
 
-#comeplete-order {
+#complete-order {
   display: none;
 }
 
@@ -21,4 +21,7 @@
 
 .pizza:hover{
     text-decoration: underline;
+}
+#show-receipt {
+  display: none;
 }

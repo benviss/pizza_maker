@@ -1,6 +1,6 @@
 // Back End
 function Order() {
-  this.total;
+  this.total = 0;
   this.pizzas = [];
 }
 
@@ -58,6 +58,12 @@ Pizza.prototype.findPCost = function() {
   }
 }
 
+Order.prototype.findOrderCost = function() {
+  for (var i = 0; i < this.pizzas.length; i++) {
+    this.total += this.pizzas[i].total
+  }
+}
+
 // Front End
 $(document).ready(function() {
   var order = new Order();
@@ -101,8 +107,9 @@ $(document).ready(function() {
       }
       userPizza.findPCost();
 
-    $("ul#pizza-list").append("<li><span class='pizza'>" + userPizza.size.name +" Pizza Cost $" + userPizza.total+"</span></li>")
+    $("ul.pizza-list").append("<li><span class='pizza'>" + userPizza.size.name +" Pizza Cost $" + userPizza.total+"</span></li>")
       $(".pizza").last().click(function(){
+        $('#show-receipt').hide();
         $('#topping-list').empty();
         $("#show-pizza").toggle();
         $("#pickSize").text(" "+userPizza.size.name);
@@ -116,6 +123,9 @@ $(document).ready(function() {
       $('#complete-order').show();
     });
     $('#complete-order').click(function() {
-      
+      $('#show-pizza').hide();
+      $('#show-receipt').show();
+      order.findOrderCost();
+      $('#total-cost').text(" $"+order.total);
     });
 });
